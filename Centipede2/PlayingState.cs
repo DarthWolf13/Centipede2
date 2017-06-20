@@ -11,19 +11,22 @@ namespace Centipede2
     {
         Player player;
         Bullet bullet;
-        GameObjectList snakeSegments;
+        GameObjectList snakeSegments, mushrooms;
         int snakeLenght = 10;
+        int mushroomAmount = 20;
 
         public PlayingState()
         {
             player = new Player();
             bullet = new Bullet();
             snakeSegments = new GameObjectList();
+            mushrooms = new GameObjectList();
 
             this.Add(new SpriteGameObject("spr_background"));
             this.Add(player);
             this.Add(bullet);
             this.Add(snakeSegments);
+            this.Add(mushrooms);
 
             for(int i = 0; i < snakeLenght; i++)
             {
@@ -35,6 +38,11 @@ namespace Centipede2
                 {
                     this.snakeSegments.Add(new SnakeSegment(i * 32, 0, "spr_snakehead"));
                 }
+            }
+
+            for (int i = 0; i < mushroomAmount; i++)
+            {
+                this.mushrooms.Add(new Mushroom());
             }
         }
 
