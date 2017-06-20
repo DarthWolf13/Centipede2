@@ -55,5 +55,40 @@ namespace Centipede2
                 bullet.Fire(new Vector2(player.Position.X + player.Width/2 - bullet.Width/2, player.Position.Y + 20));
             }
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            foreach(SnakeSegment snakeSegment in snakeSegments.Objects)
+            {
+                foreach(Mushroom mushroom in mushrooms.Objects)
+                {
+                    if (snakeSegment.CollidesWith(mushroom))
+                    {
+                        snakeSegment.Bounce();
+                    }
+
+                    if (bullet.CollidesWith(mushroom))
+                    {
+                        this.mushrooms.Remove(mushroom);
+                        bullet.Reset();
+                        break;
+                    }                   
+                }
+            }
+
+
+            foreach (SnakeSegment snakeSegment in snakeSegments.Objects)
+            {
+                if (bullet.CollidesWith(snakeSegment))
+                {
+                    this.snakeSegments.Remove(snakeSegment);
+                    this.mushrooms.Add(new Mushroom(snakeSegment.Position));
+                    bullet.Reset();
+                    break;
+                }
+            }           
+        }
     }
 }
