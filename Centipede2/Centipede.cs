@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Centipede
+namespace Centipede2
 {
     /// <summary>
     /// This is the main type for your game
@@ -36,7 +36,8 @@ namespace Centipede
             SetFullScreen(false);
 
             // TODO: Add game states to GameStateManager here
-
+            gameStateManager.AddGameState("PlayingState", new PlayingState());
+            gameStateManager.SwitchTo("PlayingState");
         }
 
     }
