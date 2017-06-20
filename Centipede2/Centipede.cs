@@ -37,6 +37,7 @@ namespace Centipede2
 
             // TODO: Add game states to GameStateManager here
             gameStateManager.AddGameState("PlayingState", new PlayingState());
+            gameStateManager.AddGameState("GameOverState", new GameOverState());
             gameStateManager.SwitchTo("PlayingState");
         }
 
